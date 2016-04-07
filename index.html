@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Goblin Game</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+
+
+
+</head>
+<body>
+
+<script type="text/javascript">
+// Create the canvas with Javascript
+var canvas = document.createElement('canvas');
+// Create a context var so we can target it
+var context = canvas.getContext('2d');
+// Set hard width and height
+canvas.width = 512;
+canvas.height = 480;
+// PUT the canvas in the DOM
+document.body.appendChild(canvas);
+
+
+// Put a background image on the canvas
+var bgImage = new Image();
+bgImage.src ="img/background.png";
+
+var josh = new Image();
+josh.src = "img/hero.png";
+var joshLoc = {
+	x:100,
+	y:100
+};
+
+var will = new Image();
+will.src = "img/monster.png";
+var willLoc = {
+	x:150,
+	y:100
+};
+// Handler for our keypresses
+var keysDown = [];
+// we will put in this object, the keys that are pressed.
+
+addEventListener('keydown', function(event){
+	keysDown[event.keyCode] = true;
+	// console.log(keysDown);
+});
+
+addEventListener('keyup', function(event){
+	delete keysDown[event.keyCode];
+});
+
+var update = function(){
+	if(38 in keysDown){
+		// If 38 in keysDown, that means the user has pressed up.
+		// Move Josh up.
+		if(joshLoc.y > 20){
+			joshLoc.y -= 10;
+		}
+		// console.log(joshLoc.y);
+	} else if (40 in keysDown){
+		if(joshLoc.y < 420){
+			joshLoc.y += 10;
+		}
+
+	} else if (37 in keysDown){
+		// console.log(joshLoc.x);
+		if(joshLoc.x > 30){
+			joshLoc.x -= 10;
+		}
+
+		
+
+	} else if (39 in keysDown){
+		// console.log(joshLoc.x);
+		if(joshLoc.x < 460){
+			joshLoc.x += 10;
+		}
+		
+	}
+
+	// Check to see if Josh caught the crafty will.
+	// Basic Collision detection
+
+	if(joshLoc.x <= (willLoc.x + 32) && (willLoc.x <= (joshLoc.x + 32)) && joshLoc.y <= (willLoc.y + 32) && willLoc.y <= (joshLoc.y + 32)){
+			
+			console.log('Josh is standing on top of will');
+	}
+
+
+
+}
+
+var goblin = function(){
+
+	willLoc.y.Math.random 
+
+}
+
+
+function draw(){
+	context.drawImage(bgImage, 0, 0);
+	context.drawImage(will, willLoc.x, willLoc.y);
+	context.drawImage(josh, joshLoc.x, joshLoc.y);
+	update();
+	goblin();
+	requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
+
+
+
+
+
+</body>
+</html>
