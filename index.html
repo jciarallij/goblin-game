@@ -13,7 +13,18 @@
 </head>
 <body>
 
+	<div id="high-score">0</div>
+	<div id="curr-score">0</div>
+
 <script type="text/javascript">
+
+var highScore = localStorage.getItem('highScore');
+if(typeof(highScore) === undefined){
+	
+	highScore = 0;
+}
+var currentScore = 0;
+
 // Create the canvas with Javascript
 var canvas = document.createElement('canvas');
 // Create a context var so we can target it
@@ -90,6 +101,10 @@ var update = function(){
 	if(joshLoc.x <= (willLoc.x + 32) && (willLoc.x <= (joshLoc.x + 32)) && joshLoc.y <= (willLoc.y + 32) && willLoc.y <= (joshLoc.y + 32)){
 			
 			console.log('Josh is standing on top of will');
+			currentScore++;
+			if(currentScore > highScore){
+			highScore = currentScore;
+			}
 	}
 
 
@@ -98,7 +113,7 @@ var update = function(){
 
 var goblin = function(){
 
-	willLoc.y.Math.random 
+	
 
 }
 
@@ -113,6 +128,11 @@ function draw(){
 }
 
 draw();
+
+
+
+
+
 
 </script>
 
